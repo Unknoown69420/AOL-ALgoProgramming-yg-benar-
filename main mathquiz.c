@@ -89,7 +89,6 @@ srand (time(NULL));
         int score = 0;
         printf ("\n---Level %d ---\n", level);
 
-int main (){
 
 
 
