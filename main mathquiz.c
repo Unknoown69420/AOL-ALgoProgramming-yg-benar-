@@ -121,7 +121,7 @@ void displayLeaderboard() {
             }
         }
     }
-rintf("\n--- LEADERBOARD ---\n");
+printf("\n--- LEADERBOARD ---\n");
     for (int i = 0; i < count; i++) {
         printf("%d. %s - %d points\n", i + 1, players[i].name,players[i].score);
     }
