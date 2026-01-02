@@ -1,97 +1,73 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
-void generateQuestion(int level, int *a, int *b, char *op, int *correctAnswer) {
-    switch(level) {
+// to define a structure to hold the player's data
+struct Player {
+	char name[50];
+	int score;
+};
 
-case 1: // Level Mudah (penjumlahan & pengurangan)
-            *a = rand() % 10 + 1;
-            *b = rand() % 10 + 1;
-            *op = (rand() % 2 == 0) ? '+' : '-';
-            *correctAnswer = (*op == '+') ? (*a + *b) : (*a - *b);
-            break;
-case 2: // Level Sedang (perkalian & pembagian)
-            *a = rand() % 20 + 1;
-            *b = rand() % 20 + 1;
-            *op = (rand() % 2 == 0) ? '*' : '/';
-            if (*op == '*') {
-                *correctAnswer = (*a * *b);
-            } else {
-                // Pastikan pembagian habis
-                *correctAnswer = rand() % 10 + 1;
-                *b = rand() % 10 + 1;
-                *a = *correctAnswer * *b;
+void saveScore(char name[], int score);
+void displayLeaderboard();
+void searchPlayer(char searchName[]);
+
+
+int main() {
+    int mainMenu, mode, answer, correctResult;
+	int num1, num2, min, max, currentScore = 0;
+	char playerName[50], yesNo;
+    int keepPlaying = 1;
+
+	srand(time(NULL)); // Seed randomizer once at the start
+
+    printf("Enter your name to start: ");
+    scanf("%s", playerName);
+
+	//Main Menu
+ while (keepPlaying) {
+        printf("\n=== Welcome to the Math Quiz ===\n");
+        printf("1. Start the quiz\n");
+        printf("2. View the Leaderboard\n");
+        printf("3. Search for a Player\n");
+        printf("4. Exit\n");
+        printf("Choice: ");
+        scanf("%d", &mainMenu);
+       
+    // Mode selection menu
+	if (mainMenu == 1) {
+        printf("\nSelect Mode: \n");
+        printf("1. Easy (10 Points)\n");
+        printf("2. Medium (20 Points)\n");
+        printf("3. Hard (30 Points)\n");
+        printf("Choice:\n");
+            scanf("%d", &mode);
+
+
+		//Ranges setting based on difficulty
+                   // Set ranges based on mode
+            if (mode == 1) {min = 1; max = 20; } 
+            else if (mode == 2) {min = 21; max = 50; } 
+            else if (mode == 3) {min = 51; max = 100; }
+            else {printf("Invalid mode!\n"); continue; }
+
+            // Generate Numbers
+            num1 = (rand() % (max - min + 1)) + min;
+            num2 = (rand() % (max - min + 1)) + min;
+            correctResult = (mode == 1) ? (num1 + num2) : (num1 * num2);
+
+            // Quiz Loop (stays on this question until correct)
+            while (1) {
+                printf("What is %d %s %d? ", num1, (mode == 1 ? "+" : "x"), num2);
+                scanf("%d", &answer);
+                if (answer == correctResult) {
+                    int points = (mode == 1) ? 10 : (mode == 2 ? 20: 30);
+                    currentScore += points;
+                    printf("Correct! +%d points. Current Total: %d\n", points, currentScore);
+                    break; // Exit the question loop
+                } else {
+                    printf("Incorrect. Try Again!\n");
+                }
             }
-            break;
-case 3: // Level Sulit (campuran operasi dengan bilangan besar)
-            *a = rand() % 50 + 1;
-            *b = rand() % 50 + 1;
-            int opType = rand() % 4;
-            switch(opType) {
-                case 0: *op = '+'; *correctAnswer = *a + *b; break;
-                case 1: *op = '-'; *correctAnswer = *a - *b; break;
-                case 2: *op = '*'; *correctAnswer = *a * *b; break;
-                case 3: *op = '/'; 
-                        *correctAnswer = rand() % 10 + 1;
-                        *b = rand() % 10 + 1;
-                        *a = *correctAnswer * *b;
-                        *op = '/';
-                        break;
-            }
-            break;
-    }
-}
-
-//fungsi biar bisa nerima jawaban dari pengguna
-int getUserAnswer (int a, int b, char op){
-  int answer;
-  printf("Berapakah %d %c %d", a, op, b);
-  scanf("%d, &answer");
-  return answer;
-}
-  
-//fungsi buat meriksa jawaban
-int checkAnswer (int userAnswer, int correctAnswer){
-  return userAnswer == correctAnswer;
-}
-
-//fungsi untuk nampilin skor akhir per level 
-void showScore(int score, int total, int level){
-  printf("\n=== HASIL LEVEL ===\n", level);
-  printf("Skor Akhir Kamu: %d dari %d\n", score, total);
-  if (score == total){
-    printf ("Sempurna!\n");
-  } else if (score >= total/2){
-    printf("Lumayan, kamu lulus.\n");
-  } else {
-    printf ("Belajar lagi...\n");
-  }
-}
-
-int main (){
-srand (time(NULL));
-    int totalQuestions = 5;
-    int level, retry;
-    int totalScore = 0;
-    int totalPlayed = 0;
-
-    printf("===KUIS MATEMATIKA===\n");
-    do { 
-        printf("\nPilih Level Kesulitan:\n");
-        printf("1. Mudah\n2. Sedang\n3. Sulit\n");
-        printf("{{Pilih (1-3): ");
-        scanf("%d, &level);
-
-        if (level < 1 || level > 3) {
-            printf("Pilihan ga ada");
-    } else {
-        int score = 0;
-        printf ("\n---Level %d ---\n", level);
-
-
-
-
-
-return 0;
-}
+        }
