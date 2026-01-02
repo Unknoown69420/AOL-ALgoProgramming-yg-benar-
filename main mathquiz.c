@@ -33,7 +33,7 @@ int main() {
         printf("3. Search for a Player\n");
         printf("4. Exit\n");
         printf("Choice: ");
-        
+        scanf("%d", &mainMenu);
        
     // Mode selection menu
 	if (mainMenu == 1) {
