@@ -96,11 +96,11 @@ int main() {
     return 0;
 }
 
-void saveScore(char name[], int score) {
-    FILE *fp = fopen("leaderboard.txt", "a");
-    if (fp == NULL) return;
-    fprintf(fp, "%s %d\n", name, score);
-    fclose(fp);
+void recordScore(char username[], int points) {
+    FILE *file = fopen("scores.txt", "a");
+    if (file == NULL) return;
+    fprintf(file, "%s %d\n", username, points);
+    fclose(file);
 }
 
 void displayLeaderboard() {
