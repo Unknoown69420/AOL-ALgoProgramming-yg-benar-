@@ -26,7 +26,7 @@ int main() {
     scanf("%s", playerName);
 
 	//Main Menu
- 
+ while (keepPlaying) {
         printf("\n=== Welcome to the Math Quiz ===\n");
         printf("1. Start the quiz\n");
         printf("2. View the Leaderboard\n");
