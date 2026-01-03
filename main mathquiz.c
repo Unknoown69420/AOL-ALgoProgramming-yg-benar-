@@ -34,7 +34,7 @@ int main() {
         printf("Choice: ");
         scanf("%d", &mainMenu);
        
-    // tingkat kesulitan mode
+    // tingkat kesulitan nya
 	if (mainMenu == 1) {
         printf("\nSelect Mode: \n");
         printf("1. Easy (10 Points)\n");
