@@ -25,7 +25,7 @@ int main() {
 
 	// menu utamanya
  do {
-        
+        printf("\n=== Welcome to the Math Quiz ===\n");
         printf("1. Start the quiz\n");
         printf("2. View the Leaderboard\n");
         printf("3. Search for a Player\n");
