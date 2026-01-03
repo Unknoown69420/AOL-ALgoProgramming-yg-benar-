@@ -69,7 +69,12 @@ int main() {
 	else if (mainMenu == 2) {
             displayLeaderboard();
         }
-        
+        else if (mainMenu == 3) {
+            char sName[50];
+            printf("Enter name to search: ");
+            scanf("%s", sName);
+            searchPlayer(sName);
+        }
         else if (mainMenu == 4) {
             saveScore(playerName, currentScore);
             printf("Score saved. Goodbye %s!\n", playerName);
