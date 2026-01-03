@@ -34,13 +34,13 @@ int main() {
         scanf("%d", &choice);
        
     // tingkat kesulitan nya
-	if (mainMenu == 1) {
-        printf("\nSelect Mode: \n");
-        printf("1. Easy (10 Points)\n");
-        printf("2. Medium (20 Points)\n");
-        printf("3. Hard (30 Points)\n");
-        printf("Choice:\n");
-        scanf("%d", &mode);
+	if (choice == 1) {
+            printf("\nSelect Mode: \n");
+            printf("1. Easy (10 Points)\n");
+            printf("2. Medium (20 Points)\n");
+            printf("3. Hard (30 Points)\n");
+            printf("Choice:\n");
+            scanf("%d", &difficulty);
 
             if (mode == 1) {min = 1; max = 20; } 
             else if (mode == 2) {min = 21; max = 50; } 
