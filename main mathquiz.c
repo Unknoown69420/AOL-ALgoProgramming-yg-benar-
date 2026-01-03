@@ -103,21 +103,21 @@ void recordScore(char username[], int points) {
     fclose(file);
 }
 
-void displayLeaderboard() {
-    struct Player players [100];
-    int count = 0;
-    FILE *fp = fopen("leaderboard.txt", "r");
+void showLeaderboard() {
+    Player records[100];
+    int total = 0;
 
-    if (fp == NULL) {
+    FILE *file = fopen("scores.txt", "r");
+    if (file == NULL) {
         printf("No records found.\n");
         return;
     }
 
-    while (fscanf(fp, "%s %d", players[count].name, &players[count].score) != EOF) {
-        count ++;
+    while (fscanf(file, "%s %d", records[total].username, &records[total].points) == 2) {
+        total++;
     }
-    fclose(fp);
-
+    fclose(file);
+	
     for (int i = 0; i < count - 1; i++) {
         for (int j = 0; j < count - i - 1; j++) {
             if (players[j].score < players[j+1].score) {
